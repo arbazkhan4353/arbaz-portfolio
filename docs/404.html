@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Arbaz Khan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: #0a0a0f;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .error-content {
+            position: relative;
+            z-index: 10;
+        }
+        .error-code {
+            font-size: clamp(6rem, 20vw, 12rem);
+            background: linear-gradient(135deg, #00d4ff, #b900ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+        }
+        .error-text {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+        .error-text span {
+            color: #00d4ff;
+        }
+        .glitch {
+            position: relative;
+            animation: glitch-anim 2s infinite;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #00d4ff, #b900ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .back-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+        }
+        .orb-404 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb-404" style="top: 20%; left: 10%;"></div>
+    <div class="error-content">
+        <div class="error-code glitch">404</div>
+        <p class="error-text">Oops! The page <span>"{current}"</span> doesn't exist.</p>
+        <a href="/" class="back-home">← Back to Home</a>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.querySelector('.error-text').innerHTML = 'Oops! The page <span>"' + (params.get('path') || window.location.pathname) + '"</span> doesn\'t exist.';
+    </script>
+</body>
+</html>
